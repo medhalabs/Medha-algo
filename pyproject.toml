@@ -1,0 +1,14 @@
+[project]
+name = "medha-algo-workspace"
+version = "0.1.0"
+description = "Monorepo workspace (backend + future frontend)"
+requires-python = ">=3.12"
+dependencies = [
+    "medha-algo",
+]
+
+[tool.uv.sources]
+medha-algo = { workspace = true }
+
+[tool.uv.workspace]
+members = ["backend"]

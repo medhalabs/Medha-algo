@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: medha-postgres
+    restart: unless-stopped
+    ports:
+      - "5454:5432"
+    environment:
+      POSTGRES_USER: medha
+      POSTGRES_PASSWORD: medha
+      POSTGRES_DB: medha_algo
+    volumes:
+      - medha_pgdata:/var/lib/postgresql/data
+
+volumes:
+  medha_pgdata:

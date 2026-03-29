@@ -1,0 +1,19 @@
+# Frontend (add framework-specific ignores when you scaffold the app)
+node_modules/
+dist/
+.next/
+.nuxt/
+.turbo/
+
+# Backend (Python / uv) — workspace venv usually at repo root
+.venv/
+backend/.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backend/.env
+*.csv
+.DS_Store
