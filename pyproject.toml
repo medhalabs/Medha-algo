@@ -1,14 +1,14 @@
 [project]
 name = "medha-algo-workspace"
 version = "0.1.0"
-description = "Monorepo workspace (backend + future frontend)"
+description = "Workspace: Medha Options Dashboard (Dhan Data API only)"
 requires-python = ">=3.12"
 dependencies = [
-    "medha-algo",
+    "medha-options-dashboard",
 ]
 
 [tool.uv.sources]
-medha-algo = { workspace = true }
+medha-options-dashboard = { workspace = true }
 
 [tool.uv.workspace]
-members = ["backend"]
+members = ["options-dashboard"]

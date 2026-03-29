@@ -1,36 +1,21 @@
-# Medha algo
+# Medha Options Dashboard
 
-Monorepo layout:
+## Run
 
-- **`backend/`** — FastAPI + DhanHQ-py + Postgres (uv workspace member).
-- **`frontend/`** — reserved for a future UI (not created yet).
-
-## Postgres (Docker, port 5454)
-
-```bash
-docker compose up -d postgres
-```
-
-Defaults: user `medha`, password `medha`, database `medha_algo`. Use the `DATABASE_URL` in `backend/.env.example` or override in `docker-compose.yml` / `.env`.
-
-## From the repo root
+From the repo root:
 
 ```bash
 uv sync
-cp backend/.env.example backend/.env   # set DATABASE_URL; add Dhan vars for the API
-uv run --directory backend alembic upgrade head
-uv run --directory backend uvicorn app.main:app --reload
+cp options-dashboard/.env.example options-dashboard/.env
+# Set DHAN_CLIENT_ID and DHAN_ACCESS_TOKEN in options-dashboard/.env
+uv run --directory options-dashboard streamlit run app/streamlit_app.py
 ```
 
-Alembic only needs **`DATABASE_URL`** in `backend/.env` (Dhan credentials are not required to run migrations).
-
-## From `backend/` only
+From `options-dashboard/`:
 
 ```bash
-cd backend
+cd options-dashboard
 uv sync
-uv run alembic upgrade head
-uv run uvicorn app.main:app --reload
+cp .env.example .env
+uv run streamlit run app/streamlit_app.py
 ```
-
-If `uv sync` in `backend/` complains about the workspace, run **`uv sync` from the repo root** once so the root `uv.lock` and `.venv` are created.

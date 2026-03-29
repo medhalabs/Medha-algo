@@ -1,1 +1,0 @@
-"""Medha DhanHQ FastAPI backend."""

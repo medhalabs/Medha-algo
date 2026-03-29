@@ -1,4 +1,4 @@
-"""Dhan API helpers (intraday OHLCV, expiry list, option chain)."""
+"""Dhan market Data API helpers (intraday OHLCV, expiry list, option chain)."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ def get_client() -> dhanhq:
     cid = os.getenv("DHAN_CLIENT_ID", "").strip()
     tok = os.getenv("DHAN_ACCESS_TOKEN", "").strip()
     if not cid or not tok:
-        raise RuntimeError("Set DHAN_CLIENT_ID and DHAN_ACCESS_TOKEN in environment or .env")
+        raise RuntimeError("Set DHAN_CLIENT_ID and DHAN_ACCESS_TOKEN (Data API) in environment or .env")
     return dhanhq(cid, tok)
 
 

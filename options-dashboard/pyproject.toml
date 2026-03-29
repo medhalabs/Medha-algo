@@ -1,7 +1,7 @@
 [project]
 name = "medha-options-dashboard"
 version = "0.1.0"
-description = "Streamlit options signal dashboard (Dhan API only)"
+description = "Streamlit options dashboard — Dhan market Data API only"
 requires-python = ">=3.12"
 dependencies = [
     "dhanhq>=2.0.2",

@@ -1,4 +1,4 @@
-"""Streamlit UI: Dhan-only option signal dashboard."""
+"""Streamlit UI: options analytics via Dhan market Data API (intraday, chain, expiries)."""
 
 from __future__ import annotations
 
@@ -216,7 +216,7 @@ def main() -> None:
         <div class="medha-hero">
           <div class="medha-hero__badge">MEDHA · OPTIONS LAB</div>
           <h1 class="medha-hero__title">Signal console</h1>
-          <p class="medha-hero__sub">Dhan-backed readout · Educational only — not financial advice.</p>
+          <p class="medha-hero__sub">Market data (Dhan Data API) · Educational only — not financial advice.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -228,7 +228,7 @@ def main() -> None:
 
     with st.sidebar:
         st.markdown("### Control deck")
-        st.caption("`DHAN_CLIENT_ID` + `DHAN_ACCESS_TOKEN` from env or `.env` in this folder.")
+        st.caption("**Data API** credentials: `DHAN_CLIENT_ID` + `DHAN_ACCESS_TOKEN` in env or `.env` here.")
         cid, tok = _credentials()
         if not cid or not tok:
             cid = st.text_input("Client ID", type="default")
@@ -361,7 +361,7 @@ def main() -> None:
                 st.write(f"**Largest CE open interest:** strike **{bce[0]:,.2f}** · OI **{bce[1]:,.0f}**")
             if bpe:
                 st.write(f"**Largest PE open interest:** strike **{bpe[0]:,.2f}** · OI **{bpe[1]:,.0f}**")
-            st.caption("IV and LTP are live snapshots from the chain — confirm bid/ask before trading.")
+            st.caption("IV and LTP are live snapshots from the chain — confirm bid/ask on your broker before acting.")
         with ec2:
             st.markdown("**Underlying close** (most recent candles)")
             tail_n = min(200, len(ohlc))

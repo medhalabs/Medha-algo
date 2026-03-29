@@ -2,9 +2,17 @@
 
 from pathlib import Path
 
-# Repo root = parent of options-dashboard/
-REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_INSTRUMENT_CSV = REPO_ROOT / "dhan-Instrument List" / "dhan-instrument-list_full.csv"
+# options-dashboard/ root (parent of app/)
+_DASHBOARD_ROOT = Path(__file__).resolve().parents[1]
+# Repo root (parent of options-dashboard/), for legacy instrument CSV layout
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+
+_INSTRUMENT_CANDIDATES = (
+    _DASHBOARD_ROOT / "data" / "dhan-instrument-list_full.csv",
+    _REPO_ROOT / "dhan-Instrument List" / "dhan-instrument-list_full.csv",
+)
+
+DEFAULT_INSTRUMENT_CSV = next((p for p in _INSTRUMENT_CANDIDATES if p.is_file()), _INSTRUMENT_CANDIDATES[0])
 
 # NSE index: security_id, display name, typical lot (may change — verify with broker)
 INDEX_INSTRUMENTS = {
