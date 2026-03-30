@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from app.core.db import Base
 from app.models import AppMetadata  # noqa: F401
+from app.models.dhan_yahoo_map import DhanYahooInstrumentMap  # noqa: F401
 
 config = context.config
 

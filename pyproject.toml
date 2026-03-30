@@ -11,4 +11,6 @@ dependencies = [
 medha-algo = { workspace = true }
 
 [tool.uv.workspace]
-members = ["backend"]
+members = [
+    "backend",
+]

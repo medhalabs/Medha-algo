@@ -3,6 +3,7 @@
 Monorepo layout:
 
 - **`backend/`** — FastAPI + DhanHQ-py + Postgres (uv workspace member).
+- **`airflow/`** — Apache Airflow (separate `uv` project) for scheduled DAGs; see [`airflow/README.md`](airflow/README.md).
 - **`frontend/`** — reserved for a future UI (not created yet).
 
 ## Postgres (Docker, port 5454)

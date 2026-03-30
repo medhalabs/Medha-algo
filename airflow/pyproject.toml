@@ -1,0 +1,13 @@
+[project]
+name = "medha-airflow"
+version = "0.1.0"
+description = "Apache Airflow orchestration (separate from FastAPI backend)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "apache-airflow==3.1.8",
+    # FAB UI + auth (required for default FabAuthManager in airflow.cfg)
+    "apache-airflow-providers-fab==3.4.0",
+    "psycopg2-binary>=2.9.11",
+    "python-dotenv>=1.2.2",
+]
