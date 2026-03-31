@@ -82,5 +82,6 @@ From this folder:
 ```bash
 uv sync          # if using a uv workspace, run `uv sync` from repo root instead
 uv run alembic upgrade head
+uv run python scripts/db/upgrade_schema.py --revision head
 uv run uvicorn app.main:app --reload
 ```

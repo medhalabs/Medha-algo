@@ -110,3 +110,91 @@ def search_symbols(query: str, *, max_results: int = 25) -> list[dict[str, Any]]
     s = yf.Search(query)
     quotes = getattr(s, "quotes", None) or []
     return jsonable_encoder(quotes[: max(1, max_results)])
+
+
+def _calendar_df_to_records(df: Any) -> list[dict[str, Any]]:
+    if df is None or getattr(df, "empty", True):
+        return []
+    # pandas NaN is not JSON-serializable via jsonable_encoder; to_json maps NaN → null
+    raw = df.reset_index().to_json(orient="records", date_format="iso")
+    return json.loads(raw)
+
+
+def calendars_earnings(
+    *,
+    start: str | None = None,
+    end: str | None = None,
+    market_cap: float | None = None,
+    filter_most_active: bool = True,
+    limit: int = 12,
+    offset: int = 0,
+    force: bool = False,
+) -> list[dict[str, Any]]:
+    cal = yf.Calendars()
+    df = cal.get_earnings_calendar(
+        market_cap=market_cap,
+        filter_most_active=filter_most_active,
+        start=start,
+        end=end,
+        limit=limit,
+        offset=offset,
+        force=force,
+    )
+    return _calendar_df_to_records(df)
+
+
+def calendars_economic_events(
+    *,
+    start: str | None = None,
+    end: str | None = None,
+    limit: int = 12,
+    offset: int = 0,
+    force: bool = False,
+) -> list[dict[str, Any]]:
+    cal = yf.Calendars()
+    df = cal.get_economic_events_calendar(
+        start=start,
+        end=end,
+        limit=limit,
+        offset=offset,
+        force=force,
+    )
+    return _calendar_df_to_records(df)
+
+
+def calendars_splits(
+    *,
+    start: str | None = None,
+    end: str | None = None,
+    limit: int = 12,
+    offset: int = 0,
+    force: bool = False,
+) -> list[dict[str, Any]]:
+    cal = yf.Calendars()
+    df = cal.get_splits_calendar(
+        start=start,
+        end=end,
+        limit=limit,
+        offset=offset,
+        force=force,
+    )
+    return _calendar_df_to_records(df)
+
+
+def calendars_ipo(
+    *,
+    start: str | None = None,
+    end: str | None = None,
+    limit: int = 12,
+    offset: int = 0,
+    force: bool = False,
+) -> list[dict[str, Any]]:
+    cal = yf.Calendars()
+    df = cal.get_ipo_info_calendar(
+        start=start,
+        end=end,
+        limit=limit,
+        offset=offset,
+        force=force,
+    )
+    return _calendar_df_to_records(df)
