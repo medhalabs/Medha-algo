@@ -6,6 +6,8 @@ from app.models.yahoo_calendar import (
     YahooCalendarIpo,
     YahooCalendarSplits,
 )
+from app.models.currency_exchange_rate import CurrencyExchangeRate
+from app.models.currency_list_mapper import CurrencyListMapper
 
 __all__ = [
     "AppMetadata",
@@ -14,4 +16,6 @@ __all__ = [
     "YahooCalendarEconomicEvents",
     "YahooCalendarSplits",
     "YahooCalendarIpo",
+    "CurrencyExchangeRate",
+    "CurrencyListMapper",
 ]
